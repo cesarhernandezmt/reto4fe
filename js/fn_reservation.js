@@ -32,7 +32,7 @@ function inicioClient(){
         success:function(respuesta){
             console.log(respuesta);
             let $select = $("#select-client");
-            $.each(respuesta, function (id, name) {
+            $.each(respuesta, function (idClient, name) {
                 $select.append('<option value='+name.idClient+'>'+name.name+'</option>');
                 console.log("select "+name.idClient)
 
@@ -55,8 +55,8 @@ function inicioScore(){
         contentType: "application/json",
         success:function(respuesta){
             console.log(respuesta);
-            let $select = $("#select-client");
-            $.each(respuesta, function (id, score) {
+            let $select = $("#select-score");
+            $.each(respuesta, function (idScore, score) {
                 $select.append('<option value='+score.idScore+'>'+score.score+'</option>');
                 console.log("select "+score.idScore)
 
@@ -145,6 +145,7 @@ function guardarElemento(){
 
         console.log(myData);
         let dataToSend=JSON.stringify(myData);
+        console.log(dataToSend);
 
         $.ajax({
             url:"http://129.151.121.62:8081/api/Reservation/save",
@@ -189,8 +190,8 @@ function editarElemento(idElemento){
             devolutionDate:$("#devolutionDate").val(),
             status:$("#status").val(),
             doctor:{id:+$("#select-doctor").val()},
-            client:{id:+$("#select-client").val()},
-            score:{id:+$("#select-score").val()},
+            client:{idClient:+$("#select-client").val()},
+            score:{idScore:+$("#select-score").val()},
         };
 
         console.log(myData);

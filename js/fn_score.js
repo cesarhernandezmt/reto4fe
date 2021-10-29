@@ -45,69 +45,82 @@ function mostrarRespuesta(respuesta){
 
 function guardarElemento(){
 
-    let myData={
-        score:{idScore:+$("#select-score").val()},
-    };
+    if($("#score").val() == ""){
+            alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
+    }
+    else{
 
-    console.log(myData);
-    let dataToSend=JSON.stringify(myData);
-    console.log(dataToSend);
+        let myData={
+            score:$("#score").val(),
+        };
 
-    $.ajax({
-        url:"http://129.151.121.62:8081/api/Score/save",
-        type:"POST",
-        data:dataToSend,
-        datatype:"JSON",
-        contentType: "application/json",
-        success:function(respuesta){
-            console.log(respuesta);
-            $("#resultado").empty();
-            $("#score").val("");
-            traerInformacion();
-            console.log("Se ha añadido el registro");
-            alert("Se ha añadido el registro")
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.");
-            alert("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.")
-         
-        }
-    });
+        console.log(myData);
+        let dataToSend=JSON.stringify(myData);
+        console.log(dataToSend);
+
+        $.ajax({
+            url:"http://129.151.121.62:8081/api/Score/save",
+            type:"POST",
+            data:dataToSend,
+            datatype:"JSON",
+            contentType: "application/json",
+            success:function(respuesta){
+                console.log(respuesta);
+                $("#resultado").empty();
+                $("#score").val("");
+                traerInformacion();
+                console.log("Se ha añadido el registro");
+                alert("Se ha añadido el registro")
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.")
+            
+            }
+        });
+    }
 
 }
 
 
 function editarElemento(idElemento){
 
-    let myData={
-        idScore:idElemento,
-        sscore:{idScore:+$("#select-score").val()},
-    };
+    if($("#score").val() == ""){
+        alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
+    }
+    else{
 
-    console.log(myData);
-    let dataToSend=JSON.stringify(myData);
+        let myData={
+            idScore:idElemento,
+            score:$("#score").val(),
+        };
 
-    $.ajax({
-        url:"http://129.151.121.62:8081/api/Score/update",
-        type:"PUT",
-        data:dataToSend,
-        contentType:"application/JSON",
-        datatype:"JSON",
-        success:function(respuesta){
-            console.log(respuesta);
-            $("#resultado").empty();
-            $("#idScore").val("");
-            $("#score").val("");
-            traerInformacion();
-            console.log("Se ha actualizado el registro");
-            alert("Se ha actualizado el registro")
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.");
-            alert("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.")            
-        }
-    });
+        console.log(myData);
+        let dataToSend=JSON.stringify(myData);
+        console.log(dataToSend);
 
+        $.ajax({
+            url:"http://129.151.121.62:8081/api/Score/update",
+            type:"PUT",
+            data:dataToSend,
+            contentType:"application/JSON",
+            datatype:"JSON",
+            success:function(respuesta){
+                console.log(respuesta);
+                $("#resultado").empty();
+                $("#idScore").val("");
+                $("#score").val("");
+                traerInformacion();
+                console.log("Se ha actualizado el registro");
+                alert("Se ha actualizado el registro")
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.")            
+            }
+        });
+        
+    }
 }
 
 
