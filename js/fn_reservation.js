@@ -139,8 +139,8 @@ function guardarElemento(){
             devolutionDate:$("#devolutionDate").val(),
             status:$("#status").val(),
             doctor:{id:+$("#select-doctor").val()},
-            client:{id:+$("#select-client").val()},
-            score:{id:+$("#select-score").val()},
+            client:{idClient:+$("#select-client").val()},
+            score:{idScore:+$("#select-score").val()},
         };
 
         console.log(myData);

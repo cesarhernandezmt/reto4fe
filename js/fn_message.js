@@ -104,8 +104,8 @@ function guardarElemento(){
 
         let myData={
             messageText:$("#messageText").val(),
-            doctor:{id:+$("#select-doctor").val()},
-            client:{id:+$("#select-client").val()},
+            doctor:{id:$("#select-doctor").val()},
+            client:{idClient:+$("#select-client").val()},
         };
         
         console.log(myData);
@@ -128,6 +128,7 @@ function guardarElemento(){
                 alert("Se ha añadido el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR, textStatus, errorThrown);
                 console.log("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.");
                 alert("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.")
             }
@@ -148,7 +149,7 @@ function editarElemento(idElemento){
             idMessage:idElemento,
             messageText:$("#messageText").val(),
             doctor:{id:+$("#select-doctor").val()},
-            client:{id:+$("#select-client").val()},
+            client:{idClient:+$("#select-client").val()},
         };
 
         console.log(myData);

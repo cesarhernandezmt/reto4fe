@@ -46,11 +46,12 @@ function mostrarRespuesta(respuesta){
 function guardarElemento(){
 
     let myData={
-        score:$("#score").val(),
+        score:{idScore:+$("#select-score").val()},
     };
 
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
+    console.log(dataToSend);
 
     $.ajax({
         url:"http://129.151.121.62:8081/api/Score/save",
@@ -80,7 +81,7 @@ function editarElemento(idElemento){
 
     let myData={
         idScore:idElemento,
-        score:$("#score").val(),
+        sscore:{idScore:+$("#select-score").val()},
     };
 
     console.log(myData);
