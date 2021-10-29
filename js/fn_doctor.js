@@ -9,7 +9,7 @@ function inicioSpecialty(){
             console.log(respuesta);
             let $select = $("#select-specialty");
             $.each(respuesta, function (id, name) {
-                $select.append('<option value='+name.id+'>'+name.name+'</option>');
+                $select.append('<option value='+name.id +'>'+name.name+'</option>');
                 console.log("select "+name.id)
 
             });
@@ -63,10 +63,10 @@ function mostrarRespuesta(respuesta){
         myTable+="<td>"+respuesta[i].name+"</td>";
         myTable+="<td>"+respuesta[i].department+"</td>";
         myTable+="<td>"+respuesta[i].year+"</td>";
-        myTable+="<td>"+respuesta[i].description+"</td>";
+        myTable+="<td>"+respuesta[i].description+"</td>"; 
         myTable+="<td>"+respuesta[i].specialty.name+"</td>";
-        myTable+='<td><center><button onclick="editarElemento('+respuesta[i].id+')">Actualizar</button><center></td>';
-        myTable+='<td><center><button onclick="borrarElemento('+respuesta[i].id+')">Borrar</button><center></td>';
+        myTable+="<td><center><button onclick='editarElemento("+respuesta[i].id+")'>Actualizar</button><center></td>";
+        myTable+="<td><center><button onclick='borrarElemento("+respuesta[i].id+")'>Borrar</button><center></td>";
         myTable+="</tr>"
     }
 
@@ -78,8 +78,9 @@ function mostrarRespuesta(respuesta){
 
 function guardarElemento(){
 
-    if($("#name").val() == "" || $("#department").val() == "" || $("#year").val() == "" || $("#description").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+    if($("#name").val() == "" || $("#department").val() == "" || $("#year").val() == "" || $("#description").val() == "" ||
+       $("#select-specialty").val() == null){
+            alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
 
@@ -90,7 +91,7 @@ function guardarElemento(){
             description:$("#description").val(),
             specialty:{id:+$("#select-specialty").val()},
         };
-
+        
         console.log(myData);
         let dataToSend=JSON.stringify(myData);
 
@@ -113,7 +114,8 @@ function guardarElemento(){
                 alert("Se ha añadido el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.")
             }
         });
     }
@@ -123,8 +125,9 @@ function guardarElemento(){
 
 function editarElemento(idElemento){
 
-    if($("#name").val() == "" || $("#department").val() == "" || $("#year").val() == "" || $("#description").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+    if($("#name").val() == "" || $("#department").val() == "" || $("#year").val() == "" || $("#description").val() == "" ||
+       $("#select-specialty").val() == null){
+            alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
 
@@ -160,7 +163,8 @@ function editarElemento(idElemento){
                 alert("Se ha actualizado el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.")  
             }
         });
     }
@@ -190,7 +194,8 @@ function borrarElemento(idElemento){
             alert("Se ha eliminado el registro")
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            
+            console.log("Excepción: No se ha eliminado el registro. Verifique la operación e intente nuevamente.");
+            alert("Excepción: No se ha eliminado el registro. Verifique la operación e intente nuevamente.")             
         }
     });
 

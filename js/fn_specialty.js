@@ -7,13 +7,7 @@ function traerInformacion(){
         contentType: "application/json",
         success:function(respuesta){
             console.log(respuesta);
-            mostrarRespuesta(respuesta)
-            let $select = $("#select-specialty");
-            $.each(respuesta, function (id, name) {
-                $select.append('<option value='+name.id+'>'+name.name+'</option>');
-                console.log("select "+name.id)
-            });
-
+            mostrarRespuesta(respuesta);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             
@@ -40,8 +34,8 @@ function mostrarRespuesta(respuesta){
         /*myTable+="<td>"+respuesta[i].id+"</td>";*/
         myTable+="<td>"+respuesta[i].name+"</td>";
         myTable+="<td>"+respuesta[i].description+"</td>";
-        myTable+='<td><center><button onclick="editarElemento('+respuesta[i].id+')">Actualizar</button><center></td>';
-        myTable+='<td><center><button onclick="borrarElemento('+respuesta[i].id+')">Borrar</button><center></td>';
+        myTable+="<td><center><button onclick='editarElemento("+respuesta[i].id+")'>Actualizar</button><center></td>";
+        myTable+="<td><center><button onclick='borrarElemento("+respuesta[i].id+")'>Borrar</button><center></td>";
         myTable+="</tr>"
     }
 
@@ -54,7 +48,7 @@ function mostrarRespuesta(respuesta){
 function guardarElemento(){
 
     if($("#name").val() == "" || $("#description").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+        alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
 
@@ -82,7 +76,8 @@ function guardarElemento(){
                 alert("Se ha añadido el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.")                
             }
         });
     }
@@ -93,7 +88,7 @@ function guardarElemento(){
 function editarElemento(idElemento){
 
     if($("#name").val() == "" || $("#description").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+        alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
 
@@ -123,7 +118,8 @@ function editarElemento(idElemento){
                 alert("Se ha actualizado el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.")              
             }
         });
     }
@@ -152,7 +148,8 @@ function borrarElemento(idElemento){
             alert("Se ha eliminado el registro")
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            
+            console.log("No se puede eliminar la Especialidad porque ya fue asignada al registro de un Médico.");
+            alert("No se puede eliminar la Especialidad porque ya fue asignada al registro de un Médico.")            
         }
     });
 

@@ -97,8 +97,8 @@ function mostrarRespuesta(respuesta){
 
 function guardarElemento(){
 
-    if($("#messageText").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+    if($("#messageText").val() == "" || $("#select-doctor").val() == null || $("#select-client").val() == null){
+        alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
 
@@ -107,10 +107,10 @@ function guardarElemento(){
             doctor:{id:+$("#select-doctor").val()},
             client:{id:+$("#select-client").val()},
         };
-
+        
         console.log(myData);
         let dataToSend=JSON.stringify(myData);
-
+        console.log(dataToSend);
         $.ajax({
             url:"http://129.151.121.62:8081/api/Message/save",
             type:"POST",
@@ -128,7 +128,8 @@ function guardarElemento(){
                 alert("Se ha añadido el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.")
             }
         });
     }
@@ -138,8 +139,8 @@ function guardarElemento(){
 
 function editarElemento(idElemento){
 
-    if($("#messageText").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+    if($("#messageText").val() == "" || $("#select-doctor").val() == null || $("#select-client").val() == null){
+        alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
 
@@ -171,7 +172,8 @@ function editarElemento(idElemento){
                 alert("Se ha actualizado el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.")
             }
         });
     }
@@ -201,7 +203,8 @@ function borrarElemento(idElemento){
             alert("Se ha eliminado el registro")
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            
+            console.log("No se puede eliminar la Especialidad porque ya fue asignada al registro de un Médico.");
+            alert("No se puede eliminar la Especialidad porque ya fue asignada al registro de un Médico.")
         }
     });
 

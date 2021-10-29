@@ -20,7 +20,6 @@ function traerInformacion(){
 function mostrarRespuesta(respuesta){
 
     let myTable = "<table>";
-    let fechaHoy = new Date().toISOString() ;
 
     myTable+="<tr>";
     myTable+="<th>"+"ID"+"</th>";
@@ -51,7 +50,7 @@ function mostrarRespuesta(respuesta){
 function guardarElemento(){
 
     if($("#name").val() == "" || $("#email").val() == "" || $("#password").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+        alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
 
@@ -81,7 +80,8 @@ function guardarElemento(){
                 alert("Se ha añadido el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.")
             }
         });
     }
@@ -92,7 +92,7 @@ function guardarElemento(){
 function editarElemento(idElemento){
 
     if($("#name").val() == "" || $("#email").val() == "" || $("#password").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+        aalert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
 
@@ -124,7 +124,8 @@ function editarElemento(idElemento){
                 alert("Se ha actualizado el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.")
             }
         });
     }
@@ -155,7 +156,8 @@ function borrarElemento(idElemento){
             alert("Se ha eliminado el registro")
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            
+            console.log("Excepción: No se ha eliminado el registro. Verifique la operación e intente nuevamente.");
+            alert("Excepción: No se ha eliminado el registro. Verifique la operación e intente nuevamente.")         
         }
     });
 

@@ -52,17 +52,17 @@ function mostrarRespuesta(respuesta){
 function guardarElemento(){
 
     if($("#email").val() == "" || $("#password").val() == "" || $("#name").val() == "" || $("#age").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+        alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
-        //console.log($("#password").val(""));
+
         let myData={
             email:$("#email").val(),
             password:$("#password").val(),
             name:$("#name").val(),        
             age:$("#age").val(),
         };
-        console.log(password);
+        
         console.log(myData);
         let dataToSend=JSON.stringify(myData);
 
@@ -84,7 +84,8 @@ function guardarElemento(){
                 alert("Se ha añadido el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.")            
             }
         });
     }
@@ -95,18 +96,18 @@ function guardarElemento(){
 function editarElemento(idElemento){
 
     if($("#email").val() == "" || $("#password").val() == "" || $("#name").val() == "" || $("#age").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+        alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
-        //console.log($("#password").val(""))
+        
         let myData={
             idClient:idElemento,
             email:$("#email").val(),
-            password:$("#password").val(""),                    
+            password:$("#password").val(),              
             name:$("#name").val(),
             age:$("#age").val(),
         };
-
+        
         console.log(myData);
         let dataToSend=JSON.stringify(myData);
 
@@ -129,7 +130,8 @@ function editarElemento(idElemento){
                 alert("Se ha actualizado el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.")                
             }
         });
     }
@@ -159,7 +161,8 @@ function borrarElemento(idElemento){
             alert("Se ha eliminado el registro")
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            
+            console.log("Excepción: No se ha eliminado el registro. Verifique la operación e intente nuevamente.");
+            alert("Excepción: No se ha eliminado el registro. Verifique la operación e intente nuevamente.")           
         }
     });
 

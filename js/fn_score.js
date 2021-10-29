@@ -67,7 +67,9 @@ function guardarElemento(){
             alert("Se ha añadido el registro")
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            
+            console.log("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.");
+            alert("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.")
+         
         }
     });
 
@@ -100,7 +102,8 @@ function editarElemento(idElemento){
             alert("Se ha actualizado el registro")
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            
+            console.log("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.");
+            alert("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.")            
         }
     });
 
@@ -130,7 +133,8 @@ function borrarElemento(idElemento){
             alert("Se ha eliminado el registro")
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            
+            console.log("No se puede eliminar la Especialidad porque ya fue asignada al registro de un Médico.");
+            alert("No se puede eliminar la Especialidad porque ya fue asignada al registro de un Médico.")            
         }
     });
 

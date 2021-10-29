@@ -32,7 +32,7 @@ function inicioClient(){
         success:function(respuesta){
             console.log(respuesta);
             let $select = $("#select-client");
-            $.each(respuesta, function (idClient, name) {
+            $.each(respuesta, function (id, name) {
                 $select.append('<option value='+name.idClient+'>'+name.name+'</option>');
                 console.log("select "+name.idClient)
 
@@ -56,7 +56,7 @@ function inicioScore(){
         success:function(respuesta){
             console.log(respuesta);
             let $select = $("#select-client");
-            $.each(respuesta, function (idScore, score) {
+            $.each(respuesta, function (id, score) {
                 $select.append('<option value='+score.idScore+'>'+score.score+'</option>');
                 console.log("select "+score.idScore)
 
@@ -92,6 +92,7 @@ function traerInformacion(){
 function mostrarRespuesta(respuesta){
 
     let myTable = "<table>";
+    let fechaHoy = new Date().toISOString();
 
     myTable+="<tr>";
     myTable+="<th>"+"ID"+"</th>";
@@ -127,8 +128,9 @@ function mostrarRespuesta(respuesta){
 
 function guardarElemento(){
 
-    if($("#startDate").val() == "" || $("#devolutionDate").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+    if($("#startDate").val() == "" || $("#devolutionDate").val() == "" || $("#status").val() == "" ||
+       $("#select-doctor").val() == null || $("#select-client").val() == null || $("#select-score").val() == null){
+            alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
 
@@ -164,7 +166,8 @@ function guardarElemento(){
                 alert("Se ha añadido el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha añadido el registro. Verifique la operación e intente nuevamente.")
             }
         });
     }    
@@ -174,8 +177,9 @@ function guardarElemento(){
 
 function editarElemento(idElemento){
 
-    if($("#startDate").val() == "" || $("#devolutionDate").val() == ""){
-        alert("Por favor llene todos los campos de registro")
+    if($("#startDate").val() == "" || $("#devolutionDate").val() == "" || $("#status").val() == "" ||
+       $("#select-doctor").val() == null || $("#select-client").val() == null || $("#select-score").val() == null){
+            alert("Por favor llene y seleccione todos los campos de registro solicitados, para poder añadir el registro.")
     }
     else{
 
@@ -212,7 +216,8 @@ function editarElemento(idElemento){
                 alert("Se ha actualizado el registro")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                
+                console.log("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.");
+                alert("Excepción: No se ha actualizado el registro. Verifique la operación e intente nuevamente.")            
             }
         });
     }
@@ -241,7 +246,8 @@ function borrarElemento(idElemento){
             alert("Se ha eliminado el registro")
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            
+            console.log("No se puede eliminar la Especialidad porque ya fue asignada al registro de un Médico.");
+            alert("No se puede eliminar la Especialidad porque ya fue asignada al registro de un Médico.")        
         }
     });
 
